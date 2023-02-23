@@ -56,6 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Regridding with xESMF and calculating a multi-model mean" href="xesmf-ohu.html" />
     <link rel="prev" title="Global Mean Surface Temperature" href="gmst.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -138,7 +139,7 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/ProjectPythiaTutorials" rel="noopener" target="_blank" title="GitHub">
+          <a class="nav-link" href="https://github.com/ProjectPythia" rel="noopener" target="_blank" title="GitHub">
             <span><i class="fab fa-github-square"></i></span>
             <label class="sr-only">GitHub</label>
           </a>
@@ -222,6 +223,11 @@ const thebe_selector_output = ".output, .cell_output"
    Precipitation Frequency Analysis
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xesmf-ohu.html">
+   Regridding with xESMF and calculating a multi-model mean
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -276,14 +282,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/ProjectPythiaTutorials/cmip6-cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/ProjectPythia/cmip6-cookbook"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ProjectPythiaTutorials/cmip6-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/example-workflows/precip-freq.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ProjectPythia/cmip6-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/example-workflows/precip-freq.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ProjectPythiaTutorials/cmip6-cookbook/edit/main/notebooks/example-workflows/precip-freq.ipynb"><button
+        <a class="edit-button" href="https://github.com/ProjectPythia/cmip6-cookbook/edit/main/notebooks/example-workflows/precip-freq.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -303,7 +309,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ProjectPythiaTutorials/cmip6-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/precip-freq.ipynb"><button type="button"
+        <a class="binder-button" href="http://binder.mypythia.org/v2/gh/ProjectPythia/cmip6-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/precip-freq.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -438,12 +444,11 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span>
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1997/170706551.py:8: TqdmExperimentalWarning: Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to force console mode (e.g. in jupyter console)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_89/106887996.py:8: TqdmExperimentalWarning: Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to force console mode (e.g. in jupyter console)
   from tqdm.autonotebook import tqdm
 </pre></div>
 </div>
@@ -478,7 +483,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-fca351b8-2251-11ed-87cd-6045bda9e3e0</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-e2f2eb0e-b3b0-11ed-8059-266eddfec34a</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -500,6 +505,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         </table>
 
 
+
+
             <details>
             <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
             <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
@@ -507,22 +514,22 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">76763baa</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">934d2c15</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
                     <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
                 </td>
                 <td style="text-align: left;">
-                    <strong>Workers:</strong> 2
+                    <strong>Workers:</strong> 4
                 </td>
             </tr>
             <tr>
                 <td style="text-align: left;">
-                    <strong>Total threads:</strong> 2
+                    <strong>Total threads:</strong> 8
                 </td>
                 <td style="text-align: left;">
-                    <strong>Total memory:</strong> 6.78 GiB
+                    <strong>Total memory:</strong> 29.38 GiB
                 </td>
             </tr>
 
@@ -544,14 +551,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-54a4a224-9246-417d-85ef-5623b38e4e42</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-b62e7cc1-ae12-45bd-9450-a14c302bbcc1</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:32927
+                        <strong>Comm:</strong> tcp://127.0.0.1:43921
                     </td>
                     <td style="text-align: left;">
-                        <strong>Workers:</strong> 2
+                        <strong>Workers:</strong> 4
                     </td>
                 </tr>
                 <tr>
@@ -559,7 +566,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                         <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
                     </td>
                     <td style="text-align: left;">
-                        <strong>Total threads:</strong> 2
+                        <strong>Total threads:</strong> 8
                     </td>
                 </tr>
                 <tr>
@@ -567,7 +574,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                         <strong>Started:</strong> Just now
                     </td>
                     <td style="text-align: left;">
-                        <strong>Total memory:</strong> 6.78 GiB
+                        <strong>Total memory:</strong> 29.38 GiB
                     </td>
                 </tr>
             </table>
@@ -590,29 +597,29 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:35455
+                            <strong>Comm: </strong> tcp://127.0.0.1:39631
                         </td>
                         <td style="text-align: left;">
-                            <strong>Total threads: </strong> 1
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:38289/status" target="_blank">http://127.0.0.1:38289/status</a>
-                        </td>
-                        <td style="text-align: left;">
-                            <strong>Memory: </strong> 3.39 GiB
+                            <strong>Total threads: </strong> 2
                         </td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:45267
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:36469/status" target="_blank">http://127.0.0.1:36469/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 7.35 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:34319
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-givbcja4
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-65ylv_6p
                         </td>
                     </tr>
 
@@ -635,29 +642,119 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:42865
+                            <strong>Comm: </strong> tcp://127.0.0.1:36129
                         </td>
                         <td style="text-align: left;">
-                            <strong>Total threads: </strong> 1
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:33875/status" target="_blank">http://127.0.0.1:33875/status</a>
-                        </td>
-                        <td style="text-align: left;">
-                            <strong>Memory: </strong> 3.39 GiB
+                            <strong>Total threads: </strong> 2
                         </td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:33997
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:39657/status" target="_blank">http://127.0.0.1:39657/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 7.35 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:41907
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-1yzx7w2y
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-upo_norh
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 2</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:37679
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 2
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:38087/status" target="_blank">http://127.0.0.1:38087/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 7.35 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:40643
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-yl67g14p
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 3</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:44103
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 2
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:40035/status" target="_blank">http://127.0.0.1:40035/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 7.35 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:35767
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-rczfge1e
                         </td>
                     </tr>
 
@@ -890,7 +987,7 @@ Name: zstore, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_pr_data</span><span class="p">(</span><span class="n">source_id</span><span class="p">,</span> <span class="n">expt_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load 3hr precip data for given source and expt ids</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">uri</span> <span class="o">=</span> <span class="n">df_3hr_pr</span><span class="p">[(</span><span class="n">df_3hr_pr</span><span class="o">.</span><span class="n">source_id</span> <span class="o">==</span> <span class="n">source_id</span><span class="p">)</span> <span class="o">&amp;</span>
@@ -905,7 +1002,7 @@ Name: zstore, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">precip_hist</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">pr_log_min</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">pr_log_max</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate precipitation histogram for a single model.</span>
 <span class="sd">    Lazy.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -924,7 +1021,7 @@ Name: zstore, dtype: int64
     <span class="k">return</span> <span class="n">pr_hist_norm</span>
 
 <span class="k">def</span> <span class="nf">precip_hist_for_expts</span><span class="p">(</span><span class="n">dsets</span><span class="p">,</span> <span class="n">experiment_ids</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate histogram for a suite of experiments.</span>
 <span class="sd">    Eager.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -951,13 +1048,13 @@ Name: zstore, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9fc1495f169747aa9556fbcc712bb5ae", "version_major": 2, "version_minor": 0}
+{"model_id": "8ccfe5badb9b494da6e83f51c2ac4b34", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_precip_changes</span><span class="p">(</span><span class="n">pr_hist</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Visualize the output</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pr_hist_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">pr_hist</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">experiment_id</span><span class="o">=</span><span class="s1">&#39;ssp585&#39;</span><span class="p">)</span> <span class="o">-</span>
@@ -997,7 +1094,7 @@ Name: zstore, dtype: int64
 <p>In this notebook, we used CMIP6 data to compare precipitation intensity in the SSP585 scenario to historical runs.</p>
 <div class="section" id="whats-next">
 <h3>What’s next?<a class="headerlink" href="#whats-next" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>More examples of using this CMIP6 data may be added in the future.</p>
+<p>More examples of using CMIP6 data.</p>
 </div>
 </div>
 <div class="section" id="resources-and-references">
@@ -1010,7 +1107,7 @@ Name: zstore, dtype: int64
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"052d18d095e8403d9c0b2dcef3ddb0de": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d2042424686b49bea6bbb2b0e41638a6", "placeholder": "\u200b", "style": "IPY_MODEL_51d91951eec441c9a1f2cf4db2da60fb", "value": " 1/1 [05:23&lt;00:00, 323.01s/it]"}}, "1addfaa602e8488ebcf55977e4a628b9": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "51d91951eec441c9a1f2cf4db2da60fb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "650b25999b09462291a41110b3b1b831": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "70de6d014ffa46e4bd2436f081846b43": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_e3e622591b014941a3136645d34a0390", "placeholder": "\u200b", "style": "IPY_MODEL_1addfaa602e8488ebcf55977e4a628b9", "value": "100%"}}, "77e1b44b89014c13bf9891b16cedf6b8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_9a362f0cced34626902b7526b283ec0f", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_fc84da215cfe4d19962c557a5de34847", "value": 1.0}}, "9a362f0cced34626902b7526b283ec0f": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9fc1495f169747aa9556fbcc712bb5ae": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_70de6d014ffa46e4bd2436f081846b43", "IPY_MODEL_77e1b44b89014c13bf9891b16cedf6b8", "IPY_MODEL_052d18d095e8403d9c0b2dcef3ddb0de"], "layout": "IPY_MODEL_650b25999b09462291a41110b3b1b831"}}, "d2042424686b49bea6bbb2b0e41638a6": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e3e622591b014941a3136645d34a0390": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fc84da215cfe4d19962c557a5de34847": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}}, "version_major": 2, "version_minor": 0}
+{"state": {"055d4acf8f3f470b9e5e3260c227e9e6": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "16d1a050b4a144df91a89103dcba616e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "16f815e0895a4a93ab85ecdf7793cdb5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_16d1a050b4a144df91a89103dcba616e", "placeholder": "\u200b", "style": "IPY_MODEL_3989838c15de42038b7cc5aa1d471c60", "value": "100%"}}, "2263ae19ca024b5ba311c2469cc3d910": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3989838c15de42038b7cc5aa1d471c60": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "8462c55a97854c3bab9744c6f9601768": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8ccfe5badb9b494da6e83f51c2ac4b34": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_16f815e0895a4a93ab85ecdf7793cdb5", "IPY_MODEL_e491313a879146aeb72bbe90700da623", "IPY_MODEL_b002adeb55704dacba4391f55562e6ae"], "layout": "IPY_MODEL_8462c55a97854c3bab9744c6f9601768"}}, "8ecd166f4d7944be8aa39b30f006eb0a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b002adeb55704dacba4391f55562e6ae": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_8ecd166f4d7944be8aa39b30f006eb0a", "placeholder": "\u200b", "style": "IPY_MODEL_f36341e2a9d64882825f7288bcf6dfc0", "value": " 1/1 [02:18&lt;00:00, 138.57s/it]"}}, "e491313a879146aeb72bbe90700da623": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2263ae19ca024b5ba311c2469cc3d910", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_055d4acf8f3f470b9e5e3260c227e9e6", "value": 1.0}}, "f36341e2a9d64882825f7288bcf6dfc0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
@@ -1026,7 +1123,7 @@ Name: zstore, dtype: int64
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./notebooks/example-workflows"
         },
         predefinedOutput: true
@@ -1043,6 +1140,13 @@ Name: zstore, dtype: int64
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Global Mean Surface Temperature</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="xesmf-ohu.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Regridding with xESMF and calculating a multi-model mean</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </div>
@@ -1066,10 +1170,10 @@ Name: zstore, dtype: int64
           <img alt="NCAR" src="../../_images/NCAR-contemp-logo-blue.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+          <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
         </div>
       </div>
     </div>
@@ -1089,7 +1193,7 @@ Name: zstore, dtype: int64
         
           By Ryan Abernathey, Henri Drake, Robert Ford.
         
-          Last updated on 22 August 2022.
+          Last updated on 23 February 2023.
         </p>
       </div>
     </div>
