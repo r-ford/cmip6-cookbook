@@ -1,97 +1,135 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Load CMIP6 Data with Intake-ESM &#8212; CMIP6 Cookbook</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6c0083f7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/foundations/intake-esm';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Google Cloud CMIP6 Public Data: Basic Python Example" href="google-cloud-basic.html" />
-    <link rel="prev" title="CMIP6 Cookbook" href="../../README.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="How to Cite This Cookbook" href="../how-to-cite.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="17 October 2024"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="132">
-    <div class="container-fluid" id="shim"></div>
-    <div class="container-fluid" id="banner"></div>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-
-<a class="navbar-brand" href="https://projectpythia.org">
-  <img src="../../_static/pythia_logo-white-rtext.svg" class="logo" alt="logo">
-</a>
-
-
-    
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="navbar-collapsible" class=" collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div class="pst-scroll-pixel-helper"></div>
+    <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://projectpythia.org">
+  
+  
+  
+  
+  
+    
+    
       
-      <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+    <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="CMIP6 Cookbook - Home"/>
+    <script>document.write(`<img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="CMIP6 Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
   
   <li class="nav-item">
     
@@ -129,268 +167,260 @@ const thebe_selector_output = ".output, .cell_output"
   </li>
   
   
-</ul>
-      </div>
+</ul></div>
       
     </div>
-
-    <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/ProjectPythia" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://twitter.com/project_pythia" rel="noopener" target="_blank" title="Twitter">
-            <span><i class="fab fa-twitter-square"></i></span>
-            <label class="sr-only">Twitter</label>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" rel="noopener" target="_blank" title="YouTube">
-            <span><i class="fab fa-youtube-square"></i></span>
-            <label class="sr-only">YouTube</label>
-          </a>
-        </li>
-      </ul>
-      </div>
-      
-    </div>
-  </div>
-</div>
-    </nav>
-    <div class="container-xl">
-      <div class="row">
-        
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
-        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   CMIP6 Cookbook
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Foundations
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Load CMIP6 Data with Intake-ESM
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="google-cloud-basic.html">
-   Google Cloud CMIP6 Public Data: Basic Python Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="esgf-opendap.html">
-   Search and Load CMIP6 Data via ESGF/OPeNDAP
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Example workflows
- </span>
-</p>
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        
+        
+        
+        <div class="bd-sidebar-primary bd-sidebar">
+          
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    CMIP6 Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/ecs-cmip6.html">
-   Estimating Equilibrium Climate Sensitivity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/gmst.html">
-   Global Mean Surface Temperature
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/precip-freq.html">
-   Precipitation Frequency Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/xesmf-ohu.html">
-   Regridding with xESMF and calculating a multi-model mean
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to-cite.html">How to Cite This Cookbook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Load CMIP6 Data with Intake-ESM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="google-cloud-basic.html">Google Cloud CMIP6 Public Data: Basic Python Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esgf-opendap.html">Search and Load CMIP6 Data via ESGF/OPeNDAP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Example workflows</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/ecs-cmip6.html">Estimating Equilibrium Climate Sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/gmst.html">Global Mean Surface Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/precip-freq.html">Precipitation Frequency Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/xesmf-ohu.html">Regridding with xESMF and calculating a multi-model mean</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by <a href="https://projectpythia.org">Project Pythia</a>.<br><br>
-All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 (CC BY 4.0)</a>.<br><br>
-
-</div>
-
-</div>
-
-        
-
-        <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main"><div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/notebooks/foundations/intake-esm.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ProjectPythia/cmip6-cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/ProjectPythia/cmip6-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/foundations/intake-esm.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ProjectPythia/cmip6-cookbook/edit/main/notebooks/foundations/intake-esm.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="http://binder.mypythia.org/v2/gh/ProjectPythia/cmip6-cookbook/main?urlpath=lab/tree/notebooks/foundations/intake-esm.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
 
         </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> On this page
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview">
-   Overview
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports">
-   Imports
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loading-data">
-   Loading Data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#whats-next">
-     What’s next?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resources-and-references">
-   Resources and references
-  </a>
- </li>
-</ul>
+        
+        <main id="main-content" class="bd-main" role="main">
+          
 
-            </nav>
-        </div>
-    </div>
-</div>
-          <div id="main-content" class="row">
-            <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-              
-              <div>
+            <div class="bd-content">
+
+              <div class="bd-article-container">
+
                 
+                  
+                  
+<div id="searchbox"></div>
+                  <article class="bd-article">
+                    
   <p><a class="reference internal" href="../../_images/intake.png"><img alt="Intake logo" src="../../_images/intake.png" style="width: 250px;" /></a></img>
 <a class="reference internal" href="../../_images/cmip6-cookbook-thumbnail.png"><img alt="CMIP6 image" src="../../_images/cmip6-cookbook-thumbnail.png" style="width: 250px;" /></a></img></p>
-<div class="tex2jax_ignore mathjax_ignore section" id="load-cmip6-data-with-intake-esm">
-<h1>Load CMIP6 Data with Intake-ESM<a class="headerlink" href="#load-cmip6-data-with-intake-esm" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="load-cmip6-data-with-intake-esm">
+<h1>Load CMIP6 Data with Intake-ESM<a class="headerlink" href="#load-cmip6-data-with-intake-esm" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
 <hr class="docutils" />
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p><a class="reference external" href="https://intake-esm.readthedocs.io/en/latest/">Intake-ESM</a> is an experimental new package that aims to provide a higher-level interface to searching and loading Earth System Model data archives, such as CMIP6. The packages is under very active development, and features may be unstable. Please report any <a class="reference external" href="https://github.com/intake/intake-esm/issues">issues or suggestions on GitHub</a>.</p>
-</div>
-<div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<table class="colwidths-auto table">
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p><a class="reference external" href="https://intake-esm.readthedocs.io/en/latest/">Intake-ESM</a> is an experimental new package that aims to provide a higher-level interface to searching and loading Earth System Model data archives, such as CMIP6. The package is under very active development, and features may be unstable. Please report any <a class="reference external" href="https://github.com/intake/intake-esm/issues">issues or suggestions on GitHub</a>.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Concepts</p></th>
 <th class="head"><p>Importance</p></th>
@@ -408,13 +438,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </tr>
 </tbody>
 </table>
+</div>
 <ul class="simple">
 <li><p><strong>Time to learn</strong>: 5 minutes</p></li>
 </ul>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="imports">
-<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -425,9 +456,9 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="loading-data">
-<h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+</section>
+<section id="loading-data">
+<h2>Loading Data<a class="headerlink" href="#loading-data" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Intake ESM works by parsing an <a class="reference external" href="https://github.com/NCAR/esm-collection-spec/">ESM Collection Spec</a> and converting it to an <a class="reference external" href="https://intake.readthedocs.io/en/latest/">Intake</a> catalog. The collection spec is stored in a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file. Here we open it using Intake.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -722,10 +753,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_411/2728409572.py:1: DeprecationWarning: cdf_kwargs and zarr_kwargs are deprecated and will be removed in a future version. Please use xarray_open_kwargs instead.
-  dset_dict = cat.to_dataset_dict(zarr_kwargs={&#39;consolidated&#39;: True})
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--&gt; The keys in the returned dictionary of datasets are constructed as follows:
 	&#39;activity_id.institution_id.source_id.experiment_id.table_id.grid_label&#39;
 </pre></div>
@@ -747,37 +774,37 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     }
 </style>
 </div><div class="output text_html">
-<div>
-  <progress value='27' class='' max='27' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [27/27 01:05&lt;00:00]
-</div>
-</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ScenarioMIP.CMCC.CMCC-ESM2.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.EC-Earth-Consortium.EC-Earth3-CC.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.DKRZ.MPI-ESM1-2-HR.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.NCC.NorESM2-MM.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.DWD.MPI-ESM1-2-HR.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.MIROC.MIROC-ES2L.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.MRI.MRI-ESM2-0.ssp585.Oyr.gn&#39;,
- &#39;CMIP.CCCma.CanESM5-CanOE.historical.Oyr.gn&#39;,
- &#39;ScenarioMIP.IPSL.IPSL-CM6A-LR.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.NCC.NorESM2-LM.ssp585.Oyr.gn&#39;,
+    <div>
+      <progress value='27' class='' max='27' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      100.00% [27/27 01:12&lt;00:00]
+    </div>
+    </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;CMIP.MRI.MRI-ESM2-0.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.NCAR.CESM2.ssp585.Oyr.gn&#39;,
  &#39;CMIP.IPSL.IPSL-CM5A2-INCA.historical.Oyr.gn&#39;,
+ &#39;CMIP.NCC.NorESM2-MM.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.CCCma.CanESM5.ssp585.Oyr.gn&#39;,
+ &#39;ScenarioMIP.CCCma.CanESM5-CanOE.ssp585.Oyr.gn&#39;,
+ &#39;ScenarioMIP.EC-Earth-Consortium.EC-Earth3-CC.ssp585.Oyr.gn&#39;,
+ &#39;CMIP.CCCma.CanESM5-CanOE.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.CMCC.CMCC-ESM2.ssp585.Oyr.gn&#39;,
+ &#39;CMIP.MPI-M.MPI-ESM1-2-LR.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.MPI-M.MPI-ESM1-2-LR.ssp585.Oyr.gn&#39;,
+ &#39;CMIP.CSIRO.ACCESS-ESM1-5.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.DKRZ.MPI-ESM1-2-HR.ssp585.Oyr.gn&#39;,
  &#39;CMIP.EC-Earth-Consortium.EC-Earth3-CC.historical.Oyr.gn&#39;,
  &#39;CMIP.CMCC.CMCC-ESM2.historical.Oyr.gn&#39;,
- &#39;CMIP.MRI.MRI-ESM2-0.historical.Oyr.gn&#39;,
- &#39;CMIP.NCC.NorESM2-MM.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.NCC.NorESM2-LM.ssp585.Oyr.gn&#39;,
+ &#39;ScenarioMIP.DWD.MPI-ESM1-2-HR.ssp585.Oyr.gn&#39;,
+ &#39;CMIP.CCCma.CanESM5.historical.Oyr.gn&#39;,
  &#39;CMIP.NCC.NorESM2-LM.historical.Oyr.gn&#39;,
- &#39;ScenarioMIP.CCCma.CanESM5-CanOE.ssp585.Oyr.gn&#39;,
- &#39;ScenarioMIP.NCAR.CESM2.ssp585.Oyr.gn&#39;,
+ &#39;ScenarioMIP.IPSL.IPSL-CM6A-LR.ssp585.Oyr.gn&#39;,
  &#39;CMIP.HAMMOZ-Consortium.MPI-ESM-1-2-HAM.historical.Oyr.gn&#39;,
- &#39;ScenarioMIP.MPI-M.MPI-ESM1-2-LR.ssp585.Oyr.gn&#39;,
- &#39;CMIP.MIROC.MIROC-ES2L.historical.Oyr.gn&#39;,
- &#39;CMIP.CSIRO.ACCESS-ESM1-5.historical.Oyr.gn&#39;,
- &#39;CMIP.MPI-M.MPI-ESM1-2-HR.historical.Oyr.gn&#39;,
- &#39;CMIP.MPI-M.MPI-ESM1-2-LR.historical.Oyr.gn&#39;,
+ &#39;ScenarioMIP.MRI.MRI-ESM2-0.ssp585.Oyr.gn&#39;,
+ &#39;ScenarioMIP.MIROC.MIROC-ES2L.ssp585.Oyr.gn&#39;,
  &#39;CMIP.IPSL.IPSL-CM6A-LR.historical.Oyr.gn&#39;,
- &#39;ScenarioMIP.CCCma.CanESM5.ssp585.Oyr.gn&#39;,
- &#39;CMIP.CCCma.CanESM5.historical.Oyr.gn&#39;]
+ &#39;ScenarioMIP.NCC.NorESM2-MM.ssp585.Oyr.gn&#39;,
+ &#39;CMIP.MPI-M.MPI-ESM1-2-HR.historical.Oyr.gn&#39;,
+ &#39;CMIP.MIROC.MIROC-ES2L.historical.Oyr.gn&#39;]
 </pre></div>
 </div>
 </div>
@@ -821,6 +848,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 }
 
 html[theme=dark],
+html[data-theme=dark],
 body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
@@ -871,7 +899,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -879,7 +907,8 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
 }
 
 .xr-section-item input + label {
@@ -889,6 +918,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1153,25 +1186,25 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
-Dimensions:             (i: 360, j: 291, lev: 45, bnds: 2, member_id: 35,
-                         dcpp_init_year: 1, time: 165, vertices: 4)
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 109GB
+Dimensions:             (member_id: 35, dcpp_init_year: 1, time: 165, lev: 45,
+                         j: 291, i: 360, bnds: 2, vertices: 4)
 Coordinates:
-  * i                   (i) int32 0 1 2 3 4 5 6 ... 353 354 355 356 357 358 359
-  * j                   (j) int32 0 1 2 3 4 5 6 ... 284 285 286 287 288 289 290
-    latitude            (j, i) float64 dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;
-  * lev                 (lev) float64 3.047 9.454 16.36 ... 5.375e+03 5.625e+03
-    lev_bnds            (lev, bnds) float64 dask.array&lt;chunksize=(45, 2), meta=np.ndarray&gt;
-    longitude           (j, i) float64 dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;
-  * time                (time) object 1850-07-02 12:00:00 ... 2014-07-02 12:0...
-    time_bnds           (time, bnds) object dask.array&lt;chunksize=(165, 2), meta=np.ndarray&gt;
-    vertices_latitude   (j, i, vertices) float64 dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;
-    vertices_longitude  (j, i, vertices) float64 dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;
-  * member_id           (member_id) object &#x27;r10i1p1f1&#x27; ... &#x27;r9i1p2f1&#x27;
-  * dcpp_init_year      (dcpp_init_year) float64 nan
+  * i                   (i) int32 1kB 0 1 2 3 4 5 6 ... 354 355 356 357 358 359
+  * j                   (j) int32 1kB 0 1 2 3 4 5 6 ... 285 286 287 288 289 290
+    latitude            (j, i) float64 838kB dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;
+  * lev                 (lev) float64 360B 3.047 9.454 ... 5.375e+03 5.625e+03
+    lev_bnds            (lev, bnds) float64 720B dask.array&lt;chunksize=(45, 2), meta=np.ndarray&gt;
+    longitude           (j, i) float64 838kB dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;
+  * time                (time) object 1kB 1850-07-02 12:00:00 ... 2014-07-02 ...
+    time_bnds           (time, bnds) object 3kB dask.array&lt;chunksize=(165, 2), meta=np.ndarray&gt;
+    vertices_latitude   (j, i, vertices) float64 3MB dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;
+    vertices_longitude  (j, i, vertices) float64 3MB dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;
+  * member_id           (member_id) object 280B &#x27;r10i1p1f1&#x27; ... &#x27;r9i1p2f1&#x27;
+  * dcpp_init_year      (dcpp_init_year) float64 8B nan
 Dimensions without coordinates: bnds, vertices
 Data variables:
-    o2                  (member_id, dcpp_init_year, time, lev, j, i) float32 dask.array&lt;chunksize=(1, 1, 12, 45, 291, 360), meta=np.ndarray&gt;
+    o2                  (member_id, dcpp_init_year, time, lev, j, i) float32 109GB dask.array&lt;chunksize=(1, 1, 12, 45, 291, 360), meta=np.ndarray&gt;
 Attributes: (12/52)
     Conventions:                      CF-1.7 CMIP-6.2
     YMDH_branch_time_in_child:        1850:01:01:00
@@ -1185,7 +1218,7 @@ Attributes: (12/52)
     intake_esm_attrs:grid_label:      gn
     intake_esm_attrs:version:         20190429
     intake_esm_attrs:_data_format_:   zarr
-    intake_esm_dataset_key:           CMIP.CCCma.CanESM5.historical.Oyr.gn</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-ee98b381-9f38-40ca-a051-685194dea5e9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ee98b381-9f38-40ca-a051-685194dea5e9' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>i</span>: 360</li><li><span class='xr-has-index'>j</span>: 291</li><li><span class='xr-has-index'>lev</span>: 45</li><li><span>bnds</span>: 2</li><li><span class='xr-has-index'>member_id</span>: 35</li><li><span class='xr-has-index'>dcpp_init_year</span>: 1</li><li><span class='xr-has-index'>time</span>: 165</li><li><span>vertices</span>: 4</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-c4e310bc-4026-4ee0-b483-535d8898a333' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c4e310bc-4026-4ee0-b483-535d8898a333' class='xr-section-summary' >Coordinates: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>i</span></div><div class='xr-var-dims'>(i)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 355 356 357 358 359</div><input id='attrs-47978516-eab2-4098-9d58-4a0e6773200f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-47978516-eab2-4098-9d58-4a0e6773200f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4872671b-a863-4e10-a02c-fecdecd78458' class='xr-var-data-in' type='checkbox'><label for='data-4872671b-a863-4e10-a02c-fecdecd78458' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>cell index along first dimension</dd><dt><span>units :</span></dt><dd>1</dd></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 357, 358, 359], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>j</span></div><div class='xr-var-dims'>(j)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 286 287 288 289 290</div><input id='attrs-6f19cd89-db7e-43e2-af5e-9e920912072d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6f19cd89-db7e-43e2-af5e-9e920912072d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-41cf70ab-8ced-41bd-907b-e7c37fe06fd1' class='xr-var-data-in' type='checkbox'><label for='data-41cf70ab-8ced-41bd-907b-e7c37fe06fd1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>cell index along second dimension</dd><dt><span>units :</span></dt><dd>1</dd></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 288, 289, 290], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(j, i)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;</div><input id='attrs-bcb498f5-560e-478c-b992-53b24103ab55' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bcb498f5-560e-478c-b992-53b24103ab55' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a2d59f7b-a44c-49fd-8abe-833502b54017' class='xr-var-data-in' type='checkbox'><label for='data-a2d59f7b-a44c-49fd-8abe-833502b54017' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>vertices_latitude</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    intake_esm_dataset_key:           CMIP.CCCma.CanESM5.historical.Oyr.gn</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3112dc0c-7642-4923-baf7-ef060837e310' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3112dc0c-7642-4923-baf7-ef060837e310' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>member_id</span>: 35</li><li><span class='xr-has-index'>dcpp_init_year</span>: 1</li><li><span class='xr-has-index'>time</span>: 165</li><li><span class='xr-has-index'>lev</span>: 45</li><li><span class='xr-has-index'>j</span>: 291</li><li><span class='xr-has-index'>i</span>: 360</li><li><span>bnds</span>: 2</li><li><span>vertices</span>: 4</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-28a7c924-eada-452c-b003-c4ca7f31752d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-28a7c924-eada-452c-b003-c4ca7f31752d' class='xr-section-summary' >Coordinates: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>i</span></div><div class='xr-var-dims'>(i)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 355 356 357 358 359</div><input id='attrs-b638495a-9a1b-47c3-b52d-b013c1061cd8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b638495a-9a1b-47c3-b52d-b013c1061cd8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4655d381-bace-4939-b9ce-53b86ab01d7a' class='xr-var-data-in' type='checkbox'><label for='data-4655d381-bace-4939-b9ce-53b86ab01d7a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>cell index along first dimension</dd><dt><span>units :</span></dt><dd>1</dd></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 357, 358, 359], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>j</span></div><div class='xr-var-dims'>(j)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 286 287 288 289 290</div><input id='attrs-1e5c7466-a93f-49dc-98c6-f23844501e21' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1e5c7466-a93f-49dc-98c6-f23844501e21' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8635859e-7967-4f5e-bfa4-b012cadc7ca0' class='xr-var-data-in' type='checkbox'><label for='data-8635859e-7967-4f5e-bfa4-b012cadc7ca0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>cell index along second dimension</dd><dt><span>units :</span></dt><dd>1</dd></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 288, 289, 290], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>latitude</span></div><div class='xr-var-dims'>(j, i)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;</div><input id='attrs-9899aa5c-05cd-46f3-9b0b-de6f7f31a74f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9899aa5c-05cd-46f3-9b0b-de6f7f31a74f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a39fd735-6cf3-4c32-8af6-7828b67d4df9' class='xr-var-data-in' type='checkbox'><label for='data-a39fd735-6cf3-4c32-8af6-7828b67d4df9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>vertices_latitude</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1197,13 +1230,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 818.44 kiB </td>
                         <td> 818.44 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (291, 360) </td>
@@ -1240,7 +1273,7 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lev</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>3.047 9.454 ... 5.375e+03 5.625e+03</div><input id='attrs-9cef08b7-ec40-4d1b-89e5-8524f09387bb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9cef08b7-ec40-4d1b-89e5-8524f09387bb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0a971f5d-5068-4cfb-96c3-ce5a99d56bcf' class='xr-var-data-in' type='checkbox'><label for='data-0a971f5d-5068-4cfb-96c3-ce5a99d56bcf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>Z</dd><dt><span>bounds :</span></dt><dd>lev_bnds</dd><dt><span>long_name :</span></dt><dd>ocean depth coordinate</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>standard_name :</span></dt><dd>depth</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class='xr-var-data'><pre>array([3.046773e+00, 9.454049e+00, 1.636397e+01, 2.389871e+01, 3.220929e+01,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lev</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>3.047 9.454 ... 5.375e+03 5.625e+03</div><input id='attrs-8adf93b8-a16c-49bf-a8c7-a7c28d13fa9f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8adf93b8-a16c-49bf-a8c7-a7c28d13fa9f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b1363778-19b3-4a24-979c-265e618a3f69' class='xr-var-data-in' type='checkbox'><label for='data-b1363778-19b3-4a24-979c-265e618a3f69' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>Z</dd><dt><span>bounds :</span></dt><dd>lev_bnds</dd><dt><span>long_name :</span></dt><dd>ocean depth coordinate</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>standard_name :</span></dt><dd>depth</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class='xr-var-data'><pre>array([3.046773e+00, 9.454049e+00, 1.636397e+01, 2.389871e+01, 3.220929e+01,
        4.148185e+01, 5.194513e+01, 6.387905e+01, 7.762451e+01, 9.359412e+01,
        1.122835e+02, 1.342823e+02, 1.602840e+02, 1.910925e+02, 2.276233e+02,
        2.708962e+02, 3.220169e+02, 3.821444e+02, 4.524429e+02, 5.340197e+02,
@@ -1248,7 +1281,7 @@ Attributes: (12/52)
        1.297724e+03, 1.470893e+03, 1.655472e+03, 1.850365e+03, 2.054414e+03,
        2.266454e+03, 2.485371e+03, 2.710133e+03, 2.939812e+03, 3.173588e+03,
        3.410756e+03, 3.650712e+03, 3.892950e+03, 4.137047e+03, 4.382654e+03,
-       4.629485e+03, 4.877303e+03, 5.125919e+03, 5.375177e+03, 5.624952e+03])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lev_bnds</span></div><div class='xr-var-dims'>(lev, bnds)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(45, 2), meta=np.ndarray&gt;</div><input id='attrs-3d7b3001-3b5a-4dc5-a7a8-fd46c156056c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3d7b3001-3b5a-4dc5-a7a8-fd46c156056c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bb4502da-b3a5-47de-9642-fdd40f621b01' class='xr-var-data-in' type='checkbox'><label for='data-bb4502da-b3a5-47de-9642-fdd40f621b01' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+       4.629485e+03, 4.877303e+03, 5.125919e+03, 5.375177e+03, 5.624952e+03])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lev_bnds</span></div><div class='xr-var-dims'>(lev, bnds)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(45, 2), meta=np.ndarray&gt;</div><input id='attrs-8771da1d-20cc-4f40-9b7a-e4ecffdd38ee' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8771da1d-20cc-4f40-9b7a-e4ecffdd38ee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f0878441-b116-49b9-9d18-3ec9dba1b221' class='xr-var-data-in' type='checkbox'><label for='data-f0878441-b116-49b9-9d18-3ec9dba1b221' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1260,13 +1293,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 720 B </td>
                         <td> 720 B </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (45, 2) </td>
@@ -1303,7 +1336,7 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(j, i)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;</div><input id='attrs-357c252d-4fad-47af-8a31-509d924c1360' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-357c252d-4fad-47af-8a31-509d924c1360' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e61cabc5-b055-4611-b707-01943057f85e' class='xr-var-data-in' type='checkbox'><label for='data-e61cabc5-b055-4611-b707-01943057f85e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>vertices_longitude</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>longitude</span></div><div class='xr-var-dims'>(j, i)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360), meta=np.ndarray&gt;</div><input id='attrs-27a5fcdf-67fa-48c2-9669-663737762924' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-27a5fcdf-67fa-48c2-9669-663737762924' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5f375191-a24c-448e-bc9e-66bf11087416' class='xr-var-data-in' type='checkbox'><label for='data-5f375191-a24c-448e-bc9e-66bf11087416' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>vertices_longitude</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1315,13 +1348,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 818.44 kiB </td>
                         <td> 818.44 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (291, 360) </td>
@@ -1358,7 +1391,7 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>1850-07-02 12:00:00 ... 2014-07-...</div><input id='attrs-45a12136-8692-4d84-8430-c75920529e8f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-45a12136-8692-4d84-8430-c75920529e8f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c6f0ed1b-70ce-4d2f-9610-d5b798bbcae8' class='xr-var-data-in' type='checkbox'><label for='data-c6f0ed1b-70ce-4d2f-9610-d5b798bbcae8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([cftime.DatetimeNoLeap(1850, 7, 2, 12, 0, 0, 0, has_year_zero=True),
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>1850-07-02 12:00:00 ... 2014-07-...</div><input id='attrs-aaa62dd6-f1b8-4491-ac30-cdf854609d74' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aaa62dd6-f1b8-4491-ac30-cdf854609d74' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7e9582ad-2249-4934-a063-95bea78c3499' class='xr-var-data-in' type='checkbox'><label for='data-7e9582ad-2249-4934-a063-95bea78c3499' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([cftime.DatetimeNoLeap(1850, 7, 2, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(1851, 7, 2, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(1852, 7, 2, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(1853, 7, 2, 12, 0, 0, 0, has_year_zero=True),
@@ -1523,7 +1556,7 @@ Attributes: (12/52)
        cftime.DatetimeNoLeap(2012, 7, 2, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2013, 7, 2, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2014, 7, 2, 12, 0, 0, 0, has_year_zero=True)],
-      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(165, 2), meta=np.ndarray&gt;</div><input id='attrs-ea29845b-7db3-4e31-9b20-11384cca13bd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ea29845b-7db3-4e31-9b20-11384cca13bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c58d3216-d370-4b3a-b049-2ba21ac545ff' class='xr-var-data-in' type='checkbox'><label for='data-c58d3216-d370-4b3a-b049-2ba21ac545ff' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(165, 2), meta=np.ndarray&gt;</div><input id='attrs-37520187-920c-48ce-bb56-18c81202cc90' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-37520187-920c-48ce-bb56-18c81202cc90' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0bcb3b72-c763-4a58-ab2c-bee7a102f37a' class='xr-var-data-in' type='checkbox'><label for='data-0bcb3b72-c763-4a58-ab2c-bee7a102f37a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1535,13 +1568,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 2.58 kiB </td>
                         <td> 2.58 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (165, 2) </td>
@@ -1578,7 +1611,7 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vertices_latitude</span></div><div class='xr-var-dims'>(j, i, vertices)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;</div><input id='attrs-b38023cc-0d63-49f9-9b79-8e7e382629de' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b38023cc-0d63-49f9-9b79-8e7e382629de' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6d990bd6-0430-414a-9f7b-4d30239b3933' class='xr-var-data-in' type='checkbox'><label for='data-6d990bd6-0430-414a-9f7b-4d30239b3933' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vertices_latitude</span></div><div class='xr-var-dims'>(j, i, vertices)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;</div><input id='attrs-91d8864a-26c6-48a4-83a9-24ced3ada9bd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-91d8864a-26c6-48a4-83a9-24ced3ada9bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8c2b26bb-cc9f-405d-b3bc-d13a26e99948' class='xr-var-data-in' type='checkbox'><label for='data-8c2b26bb-cc9f-405d-b3bc-d13a26e99948' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1590,13 +1623,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 3.20 MiB </td>
                         <td> 3.20 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (291, 360, 4) </td>
@@ -1656,7 +1689,7 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vertices_longitude</span></div><div class='xr-var-dims'>(j, i, vertices)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;</div><input id='attrs-1971eab9-db96-41de-8764-da7fc15ab711' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1971eab9-db96-41de-8764-da7fc15ab711' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d3a976d4-2494-4188-b202-d4b95a94db29' class='xr-var-data-in' type='checkbox'><label for='data-d3a976d4-2494-4188-b202-d4b95a94db29' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vertices_longitude</span></div><div class='xr-var-dims'>(j, i, vertices)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(291, 360, 4), meta=np.ndarray&gt;</div><input id='attrs-c32257a3-7059-4dee-9f55-041fc1ab1db0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c32257a3-7059-4dee-9f55-041fc1ab1db0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-76682296-af17-47ae-82c0-61b0588ee94d' class='xr-var-data-in' type='checkbox'><label for='data-76682296-af17-47ae-82c0-61b0588ee94d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1668,13 +1701,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 3.20 MiB </td>
                         <td> 3.20 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (291, 360, 4) </td>
@@ -1734,13 +1767,13 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>member_id</span></div><div class='xr-var-dims'>(member_id)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;r10i1p1f1&#x27; ... &#x27;r9i1p2f1&#x27;</div><input id='attrs-89b46439-d7b9-46cd-a83b-8aeb561a17af' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-89b46439-d7b9-46cd-a83b-8aeb561a17af' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-924383ed-c615-4852-9e21-3e882c515eb4' class='xr-var-data-in' type='checkbox'><label for='data-924383ed-c615-4852-9e21-3e882c515eb4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;r10i1p1f1&#x27;, &#x27;r10i1p2f1&#x27;, &#x27;r11i1p1f1&#x27;, &#x27;r12i1p1f1&#x27;, &#x27;r13i1p1f1&#x27;,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>member_id</span></div><div class='xr-var-dims'>(member_id)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;r10i1p1f1&#x27; ... &#x27;r9i1p2f1&#x27;</div><input id='attrs-2748d683-4d9e-40e3-9dbe-5abed89278bf' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2748d683-4d9e-40e3-9dbe-5abed89278bf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b1425487-762d-456e-8eb2-319261c56b40' class='xr-var-data-in' type='checkbox'><label for='data-b1425487-762d-456e-8eb2-319261c56b40' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;r10i1p1f1&#x27;, &#x27;r10i1p2f1&#x27;, &#x27;r11i1p1f1&#x27;, &#x27;r12i1p1f1&#x27;, &#x27;r13i1p1f1&#x27;,
        &#x27;r14i1p1f1&#x27;, &#x27;r15i1p1f1&#x27;, &#x27;r16i1p1f1&#x27;, &#x27;r17i1p1f1&#x27;, &#x27;r18i1p1f1&#x27;,
        &#x27;r19i1p1f1&#x27;, &#x27;r1i1p1f1&#x27;, &#x27;r1i1p2f1&#x27;, &#x27;r20i1p1f1&#x27;, &#x27;r21i1p1f1&#x27;,
        &#x27;r22i1p1f1&#x27;, &#x27;r23i1p1f1&#x27;, &#x27;r24i1p1f1&#x27;, &#x27;r25i1p1f1&#x27;, &#x27;r2i1p1f1&#x27;,
        &#x27;r2i1p2f1&#x27;, &#x27;r3i1p1f1&#x27;, &#x27;r3i1p2f1&#x27;, &#x27;r4i1p1f1&#x27;, &#x27;r4i1p2f1&#x27;, &#x27;r5i1p1f1&#x27;,
        &#x27;r5i1p2f1&#x27;, &#x27;r6i1p1f1&#x27;, &#x27;r6i1p2f1&#x27;, &#x27;r7i1p1f1&#x27;, &#x27;r7i1p2f1&#x27;, &#x27;r8i1p1f1&#x27;,
-       &#x27;r8i1p2f1&#x27;, &#x27;r9i1p1f1&#x27;, &#x27;r9i1p2f1&#x27;], dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dcpp_init_year</span></div><div class='xr-var-dims'>(dcpp_init_year)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>nan</div><input id='attrs-bc1591f6-a389-4915-95b9-605797110ab1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-bc1591f6-a389-4915-95b9-605797110ab1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d70066fb-3db4-437e-96ac-6601e5d19afd' class='xr-var-data-in' type='checkbox'><label for='data-d70066fb-3db4-437e-96ac-6601e5d19afd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([nan])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7b77379f-dfc3-4582-8343-e2d3f41e2916' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7b77379f-dfc3-4582-8343-e2d3f41e2916' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>o2</span></div><div class='xr-var-dims'>(member_id, dcpp_init_year, time, lev, j, i)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 1, 12, 45, 291, 360), meta=np.ndarray&gt;</div><input id='attrs-fbd36420-ca4f-43df-8f7f-54a66d14a2c8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fbd36420-ca4f-43df-8f7f-54a66d14a2c8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2c24921b-12a7-4384-84ad-523544597bf9' class='xr-var-data-in' type='checkbox'><label for='data-2c24921b-12a7-4384-84ad-523544597bf9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_measures :</span></dt><dd>area: areacello volume: volcello</dd><dt><span>cell_methods :</span></dt><dd>area: mean where sea time: mean</dd><dt><span>comment :</span></dt><dd>&#x27;Mole concentration&#x27; means number of moles per unit volume, also called &#x27;molarity&#x27;, and is used in the construction mole_concentration_of_X_in_Y, where X is a material constituent of Y.  A chemical or biological species denoted by X may be described by a single term such as &#x27;nitrogen&#x27; or a phrase such as &#x27;nox_expressed_as_nitrogen&#x27;.</dd><dt><span>history :</span></dt><dd>meanm2y_mltby1em3</dd><dt><span>long_name :</span></dt><dd>Dissolved Oxygen Concentration</dd><dt><span>original_name :</span></dt><dd>O2</dd><dt><span>standard_name :</span></dt><dd>mole_concentration_of_dissolved_molecular_oxygen_in_sea_water</dd><dt><span>units :</span></dt><dd>mol m-3</dd></dl></div><div class='xr-var-data'><table>
+       &#x27;r8i1p2f1&#x27;, &#x27;r9i1p1f1&#x27;, &#x27;r9i1p2f1&#x27;], dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dcpp_init_year</span></div><div class='xr-var-dims'>(dcpp_init_year)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>nan</div><input id='attrs-fa870fe3-55eb-4198-beff-41bc19aa7c10' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fa870fe3-55eb-4198-beff-41bc19aa7c10' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-95da9935-6bb9-49a0-a10d-53b708100233' class='xr-var-data-in' type='checkbox'><label for='data-95da9935-6bb9-49a0-a10d-53b708100233' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([nan])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c8a2acc8-0f0e-42fd-9f15-5134f9c84ff8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c8a2acc8-0f0e-42fd-9f15-5134f9c84ff8' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>o2</span></div><div class='xr-var-dims'>(member_id, dcpp_init_year, time, lev, j, i)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 1, 12, 45, 291, 360), meta=np.ndarray&gt;</div><input id='attrs-244ee455-5141-4789-896b-9f8abed0e2de' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-244ee455-5141-4789-896b-9f8abed0e2de' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8f42eba2-cb78-4c77-bcc9-53ad9c787856' class='xr-var-data-in' type='checkbox'><label for='data-8f42eba2-cb78-4c77-bcc9-53ad9c787856' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_measures :</span></dt><dd>area: areacello volume: volcello</dd><dt><span>cell_methods :</span></dt><dd>area: mean where sea time: mean</dd><dt><span>comment :</span></dt><dd>&#x27;Mole concentration&#x27; means number of moles per unit volume, also called &#x27;molarity&#x27;, and is used in the construction mole_concentration_of_X_in_Y, where X is a material constituent of Y.  A chemical or biological species denoted by X may be described by a single term such as &#x27;nitrogen&#x27; or a phrase such as &#x27;nox_expressed_as_nitrogen&#x27;.</dd><dt><span>history :</span></dt><dd>meanm2y_mltby1em3</dd><dt><span>long_name :</span></dt><dd>Dissolved Oxygen Concentration</dd><dt><span>original_name :</span></dt><dd>O2</dd><dt><span>standard_name :</span></dt><dd>mole_concentration_of_dissolved_molecular_oxygen_in_sea_water</dd><dt><span>units :</span></dt><dd>mol m-3</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1752,13 +1785,13 @@ Attributes: (12/52)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 101.42 GiB </td>
                         <td> 215.80 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (35, 1, 165, 45, 291, 360) </td>
@@ -1945,28 +1978,28 @@ Attributes: (12/52)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-189dc43d-9070-407e-b05e-151dc0178097' class='xr-section-summary-in' type='checkbox'  ><label for='section-189dc43d-9070-407e-b05e-151dc0178097' class='xr-section-summary' >Indexes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>i</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e0faea39-b5d0-4602-b764-d4cf49b789d8' class='xr-index-data-in' type='checkbox'/><label for='index-e0faea39-b5d0-4602-b764-d4cf49b789d8' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Int64Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
-            ...
-            350, 351, 352, 353, 354, 355, 356, 357, 358, 359],
-           dtype=&#x27;int64&#x27;, name=&#x27;i&#x27;, length=360))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>j</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-750968bc-677c-49fc-af25-d4ec7e0fb55c' class='xr-index-data-in' type='checkbox'/><label for='index-750968bc-677c-49fc-af25-d4ec7e0fb55c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Int64Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
-            ...
-            281, 282, 283, 284, 285, 286, 287, 288, 289, 290],
-           dtype=&#x27;int64&#x27;, name=&#x27;j&#x27;, length=291))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lev</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-92114268-cb00-4870-8743-5a5faa2af67d' class='xr-index-data-in' type='checkbox'/><label for='index-92114268-cb00-4870-8743-5a5faa2af67d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([3.0467727184295654,  9.454049110412598,  16.36396598815918,
-              23.898710250854492,  32.20928955078125,  41.48185348510742,
-               51.94512939453125, 63.879051208496094,     77.62451171875,
-               93.59412384033203, 112.28348541259766,  134.2822723388672,
-              160.28399658203125, 191.09251403808594, 227.62332153320312,
-               270.8962097167969, 322.01690673828125,  382.1443786621094,
-               452.4429016113281,  534.0197143554688,  627.8524780273438,
-               734.7150268554688,  855.1112060546875,  989.2288818359375,
-              1136.9219970703125,  1297.724365234375, 1470.8929443359375,
-                 1655.4716796875,  1850.365478515625,  2054.413818359375,
-                2266.45361328125,  2485.370849609375,   2710.13330078125,
-               2939.811767578125,   3173.58837890625,     3410.755859375,
-                 3650.7119140625,   3892.94970703125,        4137.046875,
-                  4382.654296875,   4629.48486328125,   4877.30322265625,
-                 5125.9189453125,    5375.1767578125,   5624.95166015625],
-             dtype=&#x27;float64&#x27;, name=&#x27;lev&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f0b085f0-6875-467a-a133-6ea87005bef3' class='xr-index-data-in' type='checkbox'/><label for='index-f0b085f0-6875-467a-a133-6ea87005bef3' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(CFTimeIndex([1850-07-02 12:00:00, 1851-07-02 12:00:00, 1852-07-02 12:00:00,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-7d0989a2-a71e-4113-b730-c0e2ca4b0bcc' class='xr-section-summary-in' type='checkbox'  ><label for='section-7d0989a2-a71e-4113-b730-c0e2ca4b0bcc' class='xr-section-summary' >Indexes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>i</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8c9bf525-c580-4716-a2e7-4088a5d0ca0f' class='xr-index-data-in' type='checkbox'/><label for='index-8c9bf525-c580-4716-a2e7-4088a5d0ca0f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
+       ...
+       350, 351, 352, 353, 354, 355, 356, 357, 358, 359],
+      dtype=&#x27;int32&#x27;, name=&#x27;i&#x27;, length=360))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>j</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-72e80349-3f4a-41e0-a7b7-4d2b182312d8' class='xr-index-data-in' type='checkbox'/><label for='index-72e80349-3f4a-41e0-a7b7-4d2b182312d8' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
+       ...
+       281, 282, 283, 284, 285, 286, 287, 288, 289, 290],
+      dtype=&#x27;int32&#x27;, name=&#x27;j&#x27;, length=291))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lev</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-800d5e0f-6f93-4a52-93e9-b9305cf07a3e' class='xr-index-data-in' type='checkbox'/><label for='index-800d5e0f-6f93-4a52-93e9-b9305cf07a3e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([3.0467727184295654,  9.454049110412598,  16.36396598815918,
+       23.898710250854492,  32.20928955078125,  41.48185348510742,
+        51.94512939453125, 63.879051208496094,     77.62451171875,
+        93.59412384033203, 112.28348541259766,  134.2822723388672,
+       160.28399658203125, 191.09251403808594, 227.62332153320312,
+        270.8962097167969, 322.01690673828125,  382.1443786621094,
+        452.4429016113281,  534.0197143554688,  627.8524780273438,
+        734.7150268554688,  855.1112060546875,  989.2288818359375,
+       1136.9219970703125,  1297.724365234375, 1470.8929443359375,
+          1655.4716796875,  1850.365478515625,  2054.413818359375,
+         2266.45361328125,  2485.370849609375,   2710.13330078125,
+        2939.811767578125,   3173.58837890625,     3410.755859375,
+          3650.7119140625,   3892.94970703125,        4137.046875,
+           4382.654296875,   4629.48486328125,   4877.30322265625,
+          5125.9189453125,    5375.1767578125,   5624.95166015625],
+      dtype=&#x27;float64&#x27;, name=&#x27;lev&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-67ce99bb-07a5-492f-ac94-6b5ae94affa6' class='xr-index-data-in' type='checkbox'/><label for='index-67ce99bb-07a5-492f-ac94-6b5ae94affa6' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(CFTimeIndex([1850-07-02 12:00:00, 1851-07-02 12:00:00, 1852-07-02 12:00:00,
              1853-07-02 12:00:00, 1854-07-02 12:00:00, 1855-07-02 12:00:00,
              1856-07-02 12:00:00, 1857-07-02 12:00:00, 1858-07-02 12:00:00,
              1859-07-02 12:00:00,
@@ -1975,14 +2008,14 @@ Attributes: (12/52)
              2008-07-02 12:00:00, 2009-07-02 12:00:00, 2010-07-02 12:00:00,
              2011-07-02 12:00:00, 2012-07-02 12:00:00, 2013-07-02 12:00:00,
              2014-07-02 12:00:00],
-            dtype=&#x27;object&#x27;, length=165, calendar=&#x27;noleap&#x27;, freq=&#x27;365D&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>member_id</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-287902fd-cd3e-476c-b965-8197ac004406' class='xr-index-data-in' type='checkbox'/><label for='index-287902fd-cd3e-476c-b965-8197ac004406' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;r10i1p1f1&#x27;, &#x27;r10i1p2f1&#x27;, &#x27;r11i1p1f1&#x27;, &#x27;r12i1p1f1&#x27;, &#x27;r13i1p1f1&#x27;,
+            dtype=&#x27;object&#x27;, length=165, calendar=&#x27;noleap&#x27;, freq=&#x27;365D&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>member_id</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-04f80700-cd09-4b8f-b814-653c65fe7709' class='xr-index-data-in' type='checkbox'/><label for='index-04f80700-cd09-4b8f-b814-653c65fe7709' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;r10i1p1f1&#x27;, &#x27;r10i1p2f1&#x27;, &#x27;r11i1p1f1&#x27;, &#x27;r12i1p1f1&#x27;, &#x27;r13i1p1f1&#x27;,
        &#x27;r14i1p1f1&#x27;, &#x27;r15i1p1f1&#x27;, &#x27;r16i1p1f1&#x27;, &#x27;r17i1p1f1&#x27;, &#x27;r18i1p1f1&#x27;,
        &#x27;r19i1p1f1&#x27;, &#x27;r1i1p1f1&#x27;, &#x27;r1i1p2f1&#x27;, &#x27;r20i1p1f1&#x27;, &#x27;r21i1p1f1&#x27;,
        &#x27;r22i1p1f1&#x27;, &#x27;r23i1p1f1&#x27;, &#x27;r24i1p1f1&#x27;, &#x27;r25i1p1f1&#x27;, &#x27;r2i1p1f1&#x27;,
        &#x27;r2i1p2f1&#x27;, &#x27;r3i1p1f1&#x27;, &#x27;r3i1p2f1&#x27;, &#x27;r4i1p1f1&#x27;, &#x27;r4i1p2f1&#x27;, &#x27;r5i1p1f1&#x27;,
        &#x27;r5i1p2f1&#x27;, &#x27;r6i1p1f1&#x27;, &#x27;r6i1p2f1&#x27;, &#x27;r7i1p1f1&#x27;, &#x27;r7i1p2f1&#x27;, &#x27;r8i1p1f1&#x27;,
        &#x27;r8i1p2f1&#x27;, &#x27;r9i1p1f1&#x27;, &#x27;r9i1p2f1&#x27;],
-      dtype=&#x27;object&#x27;, name=&#x27;member_id&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>dcpp_init_year</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-103d2a1d-0488-4a82-82d1-c025bc6af412' class='xr-index-data-in' type='checkbox'/><label for='index-103d2a1d-0488-4a82-82d1-c025bc6af412' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([nan], dtype=&#x27;float64&#x27;, name=&#x27;dcpp_init_year&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8250e9e0-b55f-44c4-878f-12c8d8e96835' class='xr-section-summary-in' type='checkbox'  ><label for='section-8250e9e0-b55f-44c4-878f-12c8d8e96835' class='xr-section-summary' >Attributes: <span>(52)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7 CMIP-6.2</dd><dt><span>YMDH_branch_time_in_child :</span></dt><dd>1850:01:01:00</dd><dt><span>activity_id :</span></dt><dd>CMIP</dd><dt><span>branch_method :</span></dt><dd>Spin-up documentation</dd><dt><span>branch_time_in_child :</span></dt><dd>0.0</dd><dt><span>cmor_version :</span></dt><dd>3.4.0</dd><dt><span>contact :</span></dt><dd>ec.cccma.info-info.ccmac.ec@canada.ca</dd><dt><span>data_specs_version :</span></dt><dd>01.00.29</dd><dt><span>experiment :</span></dt><dd>all-forcing simulation of the recent past</dd><dt><span>experiment_id :</span></dt><dd>historical</dd><dt><span>external_variables :</span></dt><dd>areacello volcello</dd><dt><span>forcing_index :</span></dt><dd>1</dd><dt><span>frequency :</span></dt><dd>yr</dd><dt><span>grid :</span></dt><dd>ORCA1 tripolar grid, 1 deg with refinement to 1/3 deg within 20 degrees of the equator; 361 x 290 longitude/latitude; 45 vertical levels; top grid cell 0-6.19 m</dd><dt><span>grid_label :</span></dt><dd>gn</dd><dt><span>initialization_index :</span></dt><dd>1</dd><dt><span>institution :</span></dt><dd>Canadian Centre for Climate Modelling and Analysis, Environment and Climate Change Canada, Victoria, BC V8P 5C2, Canada</dd><dt><span>institution_id :</span></dt><dd>CCCma</dd><dt><span>license :</span></dt><dd>CMIP6 model data produced by The Government of Canada (Canadian Centre for Climate Modelling and Analysis, Environment and Climate Change Canada) is licensed under a Creative Commons Attribution ShareAlike 4.0 International License (https://creativecommons.org/licenses). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file) and at https:///pcmdi.llnl.gov/. The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law.</dd><dt><span>mip_era :</span></dt><dd>CMIP6</dd><dt><span>nominal_resolution :</span></dt><dd>100 km</dd><dt><span>parent_activity_id :</span></dt><dd>CMIP</dd><dt><span>parent_experiment_id :</span></dt><dd>piControl</dd><dt><span>parent_mip_era :</span></dt><dd>CMIP6</dd><dt><span>parent_source_id :</span></dt><dd>CanESM5</dd><dt><span>parent_time_units :</span></dt><dd>days since 1850-01-01 0:0:0.0</dd><dt><span>product :</span></dt><dd>model-output</dd><dt><span>realm :</span></dt><dd>ocnBgchem</dd><dt><span>references :</span></dt><dd>Geophysical Model Development Special issue on CanESM5 (https://www.geosci-model-dev.net/special_issues.html)</dd><dt><span>source :</span></dt><dd>CanESM5 (2019): 
+      dtype=&#x27;object&#x27;, name=&#x27;member_id&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>dcpp_init_year</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-87538d33-600e-4880-8780-6b63a2513e5a' class='xr-index-data-in' type='checkbox'/><label for='index-87538d33-600e-4880-8780-6b63a2513e5a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([nan], dtype=&#x27;float64&#x27;, name=&#x27;dcpp_init_year&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-67708577-a167-42ed-96ab-9cb47408b72c' class='xr-section-summary-in' type='checkbox'  ><label for='section-67708577-a167-42ed-96ab-9cb47408b72c' class='xr-section-summary' >Attributes: <span>(52)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7 CMIP-6.2</dd><dt><span>YMDH_branch_time_in_child :</span></dt><dd>1850:01:01:00</dd><dt><span>activity_id :</span></dt><dd>CMIP</dd><dt><span>branch_method :</span></dt><dd>Spin-up documentation</dd><dt><span>branch_time_in_child :</span></dt><dd>0.0</dd><dt><span>cmor_version :</span></dt><dd>3.4.0</dd><dt><span>contact :</span></dt><dd>ec.cccma.info-info.ccmac.ec@canada.ca</dd><dt><span>data_specs_version :</span></dt><dd>01.00.29</dd><dt><span>experiment :</span></dt><dd>all-forcing simulation of the recent past</dd><dt><span>experiment_id :</span></dt><dd>historical</dd><dt><span>external_variables :</span></dt><dd>areacello volcello</dd><dt><span>forcing_index :</span></dt><dd>1</dd><dt><span>frequency :</span></dt><dd>yr</dd><dt><span>grid :</span></dt><dd>ORCA1 tripolar grid, 1 deg with refinement to 1/3 deg within 20 degrees of the equator; 361 x 290 longitude/latitude; 45 vertical levels; top grid cell 0-6.19 m</dd><dt><span>grid_label :</span></dt><dd>gn</dd><dt><span>initialization_index :</span></dt><dd>1</dd><dt><span>institution :</span></dt><dd>Canadian Centre for Climate Modelling and Analysis, Environment and Climate Change Canada, Victoria, BC V8P 5C2, Canada</dd><dt><span>institution_id :</span></dt><dd>CCCma</dd><dt><span>license :</span></dt><dd>CMIP6 model data produced by The Government of Canada (Canadian Centre for Climate Modelling and Analysis, Environment and Climate Change Canada) is licensed under a Creative Commons Attribution ShareAlike 4.0 International License (https://creativecommons.org/licenses). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file) and at https:///pcmdi.llnl.gov/. The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law.</dd><dt><span>mip_era :</span></dt><dd>CMIP6</dd><dt><span>nominal_resolution :</span></dt><dd>100 km</dd><dt><span>parent_activity_id :</span></dt><dd>CMIP</dd><dt><span>parent_experiment_id :</span></dt><dd>piControl</dd><dt><span>parent_mip_era :</span></dt><dd>CMIP6</dd><dt><span>parent_source_id :</span></dt><dd>CanESM5</dd><dt><span>parent_time_units :</span></dt><dd>days since 1850-01-01 0:0:0.0</dd><dt><span>product :</span></dt><dd>model-output</dd><dt><span>realm :</span></dt><dd>ocnBgchem</dd><dt><span>references :</span></dt><dd>Geophysical Model Development Special issue on CanESM5 (https://www.geosci-model-dev.net/special_issues.html)</dd><dt><span>source :</span></dt><dd>CanESM5 (2019): 
 aerosol: interactive
 atmos: CanAM5 (T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa)
 atmosChem: specified oxidants for aerosols
@@ -1992,23 +2025,23 @@ ocean: NEMO3.4.1 (ORCA1 tripolar grid, 1 deg with refinement to 1/3 deg within 2
 ocnBgchem: Canadian Model of Ocean Carbon (CMOC); NPZD ecosystem with OMIP prescribed carbonate chemistry
 seaIce: LIM2</dd><dt><span>source_id :</span></dt><dd>CanESM5</dd><dt><span>source_type :</span></dt><dd>AOGCM</dd><dt><span>sub_experiment :</span></dt><dd>none</dd><dt><span>sub_experiment_id :</span></dt><dd>none</dd><dt><span>table_id :</span></dt><dd>Oyr</dd><dt><span>table_info :</span></dt><dd>Creation Date:(20 February 2019) MD5:374fbe5a2bcca535c40f7f23da271e49</dd><dt><span>title :</span></dt><dd>CanESM5 output prepared for CMIP6</dd><dt><span>variable_id :</span></dt><dd>o2</dd><dt><span>version :</span></dt><dd>v20190429</dd><dt><span>status :</span></dt><dd>2019-10-25;created;by nhn2@columbia.edu</dd><dt><span>version_id :</span></dt><dd>v20190429</dd><dt><span>intake_esm_vars :</span></dt><dd>[&#x27;o2&#x27;]</dd><dt><span>intake_esm_attrs:activity_id :</span></dt><dd>CMIP</dd><dt><span>intake_esm_attrs:institution_id :</span></dt><dd>CCCma</dd><dt><span>intake_esm_attrs:source_id :</span></dt><dd>CanESM5</dd><dt><span>intake_esm_attrs:experiment_id :</span></dt><dd>historical</dd><dt><span>intake_esm_attrs:table_id :</span></dt><dd>Oyr</dd><dt><span>intake_esm_attrs:variable_id :</span></dt><dd>o2</dd><dt><span>intake_esm_attrs:grid_label :</span></dt><dd>gn</dd><dt><span>intake_esm_attrs:version :</span></dt><dd>20190429</dd><dt><span>intake_esm_attrs:_data_format_ :</span></dt><dd>zarr</dd><dt><span>intake_esm_dataset_key :</span></dt><dd>CMIP.CCCma.CanESM5.historical.Oyr.gn</dd></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <p>In this notebook, we used Intake-ESM to open an Xarray Dataset for one particular model and experiment.</p>
-<div class="section" id="whats-next">
-<h3>What’s next?<a class="headerlink" href="#whats-next" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<section id="whats-next">
+<h3>What’s next?<a class="headerlink" href="#whats-next" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>We will see an example of downloading a dataset with <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> and <code class="docutils literal notranslate"><span class="pre">zarr</span></code>.</p>
-</div>
-</div>
-<div class="section" id="resources-and-references">
-<h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+</section>
+</section>
+<section id="resources-and-references">
+<h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://gallery.pangeo.io/repos/pangeo-gallery/cmip6/intake_ESM_example.html">Original notebook in the Pangeo Gallery</a> by Henri Drake and <a class="reference external" href="https://ocean-transport.github.io/">Ryan Abernathey</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2030,80 +2063,412 @@ seaIce: LIM2</dd><dt><span>source_id :</span></dt><dd>CanESM5</dd><dt><span>sour
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../../README.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">CMIP6 Cookbook</p>
-        </div>
+                  </article>
+
+                
+                
+
+                
+                
+                  <footer class="prev-next-footer">
+                    
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../how-to-cite.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">How to Cite This Cookbook</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="google-cloud-basic.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="google-cloud-basic.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Google Cloud CMIP6 Public Data: Basic Python Example</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </div>
-          </div>
-        </main>
+                  </footer>
+                
+              </div>
 
-      </div>
+              
+              
+                
+                  <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data">Loading Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-next">What’s next?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-and-references">Resources and references</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+                
+              
+
+
+                
+                <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
-
-<footer class="footer">
-  <div class="container-fluid m-0 p-0">
   
-    <div class="footer-item">
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cmip6-cookbook/main?urlpath=lab/tree/notebooks/foundations/intake-esm.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://nimbus6.llnl.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ProjectPythia/cmip6-cookbook&urlpath=lab/tree/cmip6-cookbook/notebooks/foundations/intake-esm.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cmip6-cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cmip6-cookbook/edit/main/notebooks/foundations/intake-esm.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cmip6-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/foundations/intake-esm.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/foundations/intake-esm.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+            </div>
+
+            <footer class="bd-footer-content">
+              
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
+<p class="component-author">
+By Ryan Abernathey, Henri Drake, Robert Ford
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on 17 October 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+            </footer>
+
+        </main>
+    </div>
+  </div>
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+     
+  
+  
+  
+  
+    <div class="footer-items__start">
+      <div class="container-fluid m-0 p-0">
+      
+        <div class="footer-item">
   <div class="container-fluid footer-logos">
     <div class="container-xl">
       <div class="row d-flex flex-wrap align-items-center">
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="NCAR" src="../../_images/NCAR-contemp-logo-blue.svg" style="width: 100%">
-        </div>
-        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+          <img alt="NCAR" src="../../_images/NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
           <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
         </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+        </div>
       </div>
     </div>
-  </div>
-    </div>
-  
-    <div class="footer-item">
-    
-    </div>
-  
-    <div class="footer-item">
-      <div class="container-fluid footer-info">
+  </div></div>
+      
+        <div class="footer-item">  <div class="container-fluid footer-info">
     <div class="container-xl">
       <div class="d-flex justify-content-center">
         <p class="py-1 m-0">
-            &copy;&nbsp;2022.
+            &copy;&nbsp;2024.
         
           By Ryan Abernathey, Henri Drake, Robert Ford.
         
-          Last updated on 23 February 2023.
+          Last updated on 17 October 2024.
         </p>
       </div>
     </div>
-  </div>
+  </div></div>
+      
+        <div class="footer-item"><div class="container-fluid footer-extra">
+    <div class="container">
+      <center>
+        Theme by <a href="https://projectpythia.org">Project Pythia</a>. All code
+        in Pythia Cookbooks is licensed under
+        <a href="https://opensource.org/license/apache-2-0">Apache 2.0</a>. All
+        other non-code content is licensed under
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          Creative Commons BY 4.0 (CC BY 4.0)</a
+        >.
+      </center>
+      <br /><br />
+      <div class="row">
+        <p class="m-0">
+          <img
+            src="../../_static/footer-logo-nsf.png"
+            style="float: left; width: 60px; height: 60px; margin-right: 1rem"
+          />
+          This material is based upon work supported by the National Science
+          Foundation under Grant Nos. 2026863 and 2026899. Any opinions, findings,
+          and conclusions or recommendations expressed in this material are those
+          of the author(s) and do not necessarily reflect the views of the
+          National Science Foundation.
+        </p>
+      </div>
+    </div>
+  </div></div>
+      
+      </div>
     </div>
   
-    <div class="footer-item">
-    
-    </div>
-  
-  </div>
-</footer>
+
+  </footer>
   </body>
 </html>
